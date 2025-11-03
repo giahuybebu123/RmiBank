@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" 
+      fx:controller="bank.client.controllers.ServerConfigController"
+      alignment="CENTER" spacing="15" 
+      style="-fx-background-color: #f5f5f5; -fx-padding: 30;">
+    
+    <Label text="Cấu hình kết nối 2 Server" 
+           style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    
+    <Label text="Nhập thông tin 2 server RMI - Hệ thống sẽ tự động đồng bộ" 
+           style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+    
+    <!-- SERVER 1 -->
+    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #e8f4f8; -fx-border-color: #3498db; -fx-border-width: 2; -fx-border-radius: 5;">
+        <Label text="🖥️ SERVER 1" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #2980b9;"/>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="IP:" style="-fx-min-width: 60px; -fx-font-size: 13px;"/>
+            <TextField fx:id="txtServer1IP" promptText="localhost hoặc 192.168.x.x" 
+                       prefWidth="250" style="-fx-font-size: 13px;"/>
+        </HBox>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Port:" style="-fx-min-width: 60px; -fx-font-size: 13px;"/>
+            <TextField fx:id="txtServer1Port" promptText="1099" 
+                       prefWidth="250" style="-fx-font-size: 13px;"/>
+        </HBox>
+    </VBox>
+    
+    <!-- SERVER 2 -->
+    <VBox spacing="10" style="-fx-padding: 10; -fx-background-color: #e8f8f5; -fx-border-color: #27ae60; -fx-border-width: 2; -fx-border-radius: 5;">
+        <Label text="🖥️ SERVER 2" style="-fx-font-weight: bold; -fx-font-size: 14px; -fx-text-fill: #229954;"/>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="IP:" style="-fx-min-width: 60px; -fx-font-size: 13px;"/>
+            <TextField fx:id="txtServer2IP" promptText="localhost hoặc 192.168.x.x" 
+                       prefWidth="250" style="-fx-font-size: 13px;"/>
+        </HBox>
+        
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Port:" style="-fx-min-width: 60px; -fx-font-size: 13px;"/>
+            <TextField fx:id="txtServer2Port" promptText="1100" 
+                       prefWidth="250" style="-fx-font-size: 13px;"/>
+        </HBox>
+    </VBox>
+    
+    <Button text="Kết nối và Đồng bộ" onAction="#handleConnect" 
+            style="-fx-background-color: #e74c3c; -fx-text-fill: white; 
+                   -fx-font-size: 14px; -fx-padding: 12 35; -fx-cursor: hand; -fx-font-weight: bold;"
+            prefWidth="200"/>
+    
+    <VBox spacing="5" style="-fx-padding: 15 0 0 0; -fx-background-color: #fff3cd; -fx-padding: 12; -fx-border-color: #ffc107; -fx-border-width: 1; -fx-border-radius: 5;">
+        <Label text="💡 Hướng dẫn:" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #856404;"/>
+        <Label text="• Server 1 chạy ở port 1099, Server 2 chạy ở port 1100" style="-fx-font-size: 11px; -fx-text-fill: #856404;"/>
+        <Label text="• Nếu 2 server cùng máy: nhập 'localhost' cho cả 2" style="-fx-font-size: 11px; -fx-text-fill: #856404;"/>
+        <Label text="• Nếu khác máy: nhập IP thực của từng máy (VD: 192.168.1.100)" style="-fx-font-size: 11px; -fx-text-fill: #856404;"/>
+        <Label text="• Hệ thống sẽ TỰ ĐỘNG kết nối và đồng bộ 2 server!" style="-fx-font-size: 11px; -fx-text-fill: #d35400; -fx-font-weight: bold;"/>
+    </VBox>
+</VBox>
+

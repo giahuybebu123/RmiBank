@@ -1,0 +1,14 @@
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Button?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="bank.client.controllers.DashboardController" prefWidth="600" prefHeight="400">
+    <children>
+        <Label text="Xin chào," layoutX="50" layoutY="40"/>
+        <Label fx:id="lblUsername" layoutX="110" layoutY="40" style="-fx-font-weight: bold;"/>
+        <Label text="Số dư hiện tại:" layoutX="50" layoutY="80"/>
+        <Label fx:id="lblBalance" layoutX="180" layoutY="80" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Button text="Chuyển tiền" layoutX="50" layoutY="130" onAction="#handleTransfer"/>
+        <TableView fx:id="tblTransactions" layoutX="50" layoutY="180" prefWidth="500" prefHeight="200"/>
+    </children>
+</AnchorPane>
