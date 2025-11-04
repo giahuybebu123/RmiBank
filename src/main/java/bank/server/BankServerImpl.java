@@ -66,11 +66,11 @@ public class BankServerImpl extends UnicastRemoteObject implements BankInterface
         
         // Thực hiện chuyển tiền
         System.out.println("💸 Đang chuyển " + amount + " từ " + fromId + " đến " + toId);
-        from.withdraw(amount);
+            from.withdraw(amount);
 
         // Nếu người nhận ở server này
         if (accounts.containsKey(toId)) {
-            Account to = accounts.get(toId);
+                Account to = accounts.get(toId);
             to.deposit(amount);
             System.out.println("✅ Chuyển tiền nội bộ thành công! " + fromId + " → " + toId + " = " + amount);
             return true;
@@ -94,7 +94,7 @@ public class BankServerImpl extends UnicastRemoteObject implements BankInterface
             // Không có server khác và tài khoản nhận không tồn tại
             System.err.println("❌ Tài khoản nhận không tồn tại và không có server khác để tìm!");
             from.deposit(amount); // Hoàn lại tiền
-            return false;
+        return false;
         }
     }
 

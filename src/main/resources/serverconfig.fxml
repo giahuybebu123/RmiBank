@@ -49,10 +49,17 @@
         </HBox>
     </VBox>
     
-    <Button text="Kết nối và Đồng bộ" onAction="#handleConnect" 
-            style="-fx-background-color: #e74c3c; -fx-text-fill: white; 
-                   -fx-font-size: 14px; -fx-padding: 12 35; -fx-cursor: hand; -fx-font-weight: bold;"
-            prefWidth="200"/>
+    <HBox spacing="15" alignment="CENTER">
+        <Button text="Test Kết nối" onAction="#handleTestConnection" 
+                style="-fx-background-color: #f39c12; -fx-text-fill: white; 
+                       -fx-font-size: 13px; -fx-padding: 10 25; -fx-cursor: hand;"
+                prefWidth="150"/>
+        
+        <Button text="Kết nối và Đồng bộ" onAction="#handleConnect" 
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; 
+                       -fx-font-size: 14px; -fx-padding: 12 35; -fx-cursor: hand; -fx-font-weight: bold;"
+                prefWidth="200"/>
+    </HBox>
     
     <VBox spacing="5" style="-fx-padding: 15 0 0 0; -fx-background-color: #fff3cd; -fx-padding: 12; -fx-border-color: #ffc107; -fx-border-width: 1; -fx-border-radius: 5;">
         <Label text="💡 Hướng dẫn:" style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-text-fill: #856404;"/>

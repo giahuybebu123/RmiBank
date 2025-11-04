@@ -8,6 +8,7 @@
         <Label fx:id="lblUsername" layoutX="110" layoutY="40" style="-fx-font-weight: bold;"/>
         <Label text="Số dư hiện tại:" layoutX="50" layoutY="80"/>
         <Label fx:id="lblBalance" layoutX="180" layoutY="80" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+        <Button text="🔄 Làm mới" layoutX="350" layoutY="75" onAction="#handleRefresh" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 5 15;"/>
         <Button text="Chuyển tiền" layoutX="50" layoutY="130" onAction="#handleTransfer"/>
         <TableView fx:id="tblTransactions" layoutX="50" layoutY="180" prefWidth="500" prefHeight="200"/>
     </children>

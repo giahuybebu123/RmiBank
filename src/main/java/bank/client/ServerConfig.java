@@ -7,11 +7,11 @@ package bank.client;
 public class ServerConfig {
     private static ServerConfig instance;
     
-    // Thông tin 2 server
-    private String server1IP = "localhost";
+    // Thông tin 2 server - HARDCODE IP THỰC TẾ
+    private String server1IP = "192.168.1.10";  // ← IP máy chính
     private int server1Port = 1099;
     
-    private String server2IP = "localhost";
+    private String server2IP = "192.168.1.20";  // ← IP máy ảo
     private int server2Port = 1100;
     
     private ServerConfig() {}

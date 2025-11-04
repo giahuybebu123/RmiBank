@@ -2,6 +2,7 @@ package bank.client.controllers;
 
 import bank.client.ServerConfig;
 import bank.interfaces.BankInterface;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
@@ -33,6 +34,40 @@ public class DashboardController {
 
         // Thử kết nối với server 1 trước, nếu lỗi thì dùng server 2 (failover)
         connectToServer(username);
+        
+        // Thêm listener để tự động refresh khi window được focus lại
+        // Dùng Platform.runLater để đợi Scene được attach vào Stage
+        Platform.runLater(() -> setupAutoRefresh());
+    }
+    
+    /**
+     * Thiết lập tự động refresh khi window được focus
+     */
+    private void setupAutoRefresh() {
+        try {
+            // Kiểm tra Scene đã được attach chưa
+            if (lblUsername.getScene() == null) {
+                // Chưa attach, thử lại sau
+                Platform.runLater(() -> setupAutoRefresh());
+                return;
+            }
+            
+            Stage stage = (Stage) lblUsername.getScene().getWindow();
+            if (stage != null) {
+                // Refresh khi window được focus lại
+                stage.focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+                    if (isNowFocused && !wasFocused && currentUser != null) {
+                        // Window vừa được focus lại, refresh số dư
+                        System.out.println("🔄 Window được focus lại, tự động làm mới số dư...");
+                        refreshBalance();
+                    }
+                });
+                System.out.println("✅ Đã setup auto refresh thành công!");
+            }
+        } catch (Exception e) {
+            System.err.println("⚠️ Không thể setup auto refresh: " + e.getMessage());
+            // Không throw exception, chỉ log warning
+        }
     }
     
     /**
@@ -89,12 +124,41 @@ public class DashboardController {
         }
     }
 
+    /**
+     * Làm mới số dư từ server
+     */
     public void refreshBalance() {
-        try {
-            double newBalance = bankService.getBalance(currentUser);
-            lblBalance.setText(newBalance + " VND");
-        } catch (Exception e) {
-            e.printStackTrace();
+        if (currentUser == null || bankService == null) {
+            return;
         }
+        
+        try {
+            // Lấy số dư mới từ server
+            double newBalance = bankService.getBalance(currentUser);
+            lblBalance.setText(String.format("%.0f VND", newBalance));
+            System.out.println("🔄 Đã làm mới số dư: " + newBalance + " VND");
+        } catch (Exception e) {
+            System.err.println("❌ Lỗi khi làm mới số dư: " + e.getMessage());
+            // Nếu lỗi, thử kết nối lại
+            connectToServer(currentUser);
+        }
+    }
+    
+    /**
+     * Handler cho nút "Làm mới"
+     */
+    @FXML
+    private void handleRefresh(ActionEvent event) {
+        refreshBalance();
+    }
+    
+    /**
+     * Được gọi khi Dashboard được hiển thị
+     * Tự động refresh số dư khi quay lại từ màn hình khác
+     */
+    @FXML
+    public void initialize() {
+        // initialize() được gọi khi FXML được load
+        // Nhưng lúc này currentUser chưa được set, nên không làm gì ở đây
     }
 }
